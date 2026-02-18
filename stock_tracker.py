@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 
 
 # Getting input from user
-tickers = input("Enter stock ticker(s) (comma-separated, e.g., AAPL,TSLA): ").upper().split(',')
+tickers = input("Enter stock ticker(s) (comma-separated, e.g., AAPL,TSLA): ").upper().replace(' ','').split(',')
 
 risk_info = {}
 
@@ -11,7 +11,7 @@ for ticker in tickers:
     stock = yf.Ticker(ticker)
     data = stock.history(period = '1y')
     if data.empty:
-        print({f"\n{ticker}: No data available. Skipping."})
+        print(f"\n{ticker}: No data available. Skipping.")
         continue
 
     # Risks
